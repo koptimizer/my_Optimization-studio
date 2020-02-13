@@ -13,6 +13,7 @@
   - Knapsack problem
   - Gait learning
   - Generate image
+  - Eight queens puzzle
 - Method
   - Cuckoo search
   - Selection

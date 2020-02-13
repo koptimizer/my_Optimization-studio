@@ -3,6 +3,7 @@
 - 해결되는 과정의 시각화
 - GA 최적화 방법 탐구 
 - GA 논문 리뷰
+- I love Python
 <\n>
 <\n>
 
@@ -15,3 +16,7 @@
 - Selection method
 - Generate image
 - Memetic algorithm
+<\n><\n>
+
+# Contact
+- ilovecoding@kakao.com

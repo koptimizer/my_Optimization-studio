@@ -4,8 +4,7 @@
 - GA 최적화 방법 탐구 
 - GA 논문 리뷰
 - I love Python
-<\n>
-<\n>
+</n>
 
 # Topic
 - Problem
@@ -18,8 +17,7 @@
   - Cuckoo search
   - Selection
   - Memetic algorithm
-<\n>
-<\n>
+</n>
 
 # Contact
 - ilovecoding@kakao.com

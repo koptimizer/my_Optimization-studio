@@ -8,15 +8,18 @@
 <\n>
 
 # Topic
-- 큰 수 탐색
-- TSP(Travelling salesman problem)
-- Cuckoo search
-- Knapsack Problem
-- Gait learning
-- Selection method
-- Generate image
-- Memetic algorithm
-<\n><\n>
+- Problem
+  - 큰 수 탐색
+  - TSP(Travelling salesman problem)
+  - Knapsack problem
+  - Gait learning
+  - Generate image
+- Method
+  - Cuckoo search
+  - Selection
+  - Memetic algorithm
+<\n>
+<\n>
 
 # Contact
 - ilovecoding@kakao.com

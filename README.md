@@ -1,4 +1,4 @@
-# my GA(Genetic algorithm) Studio
+# My GA(Genetic algorithm) Studio
 - 다양한 문제를 GA로 접근 및 해결
 - 해결되는 과정의 시각화
 - GA 최적화 방법 탐구 

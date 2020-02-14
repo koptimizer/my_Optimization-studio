@@ -1,7 +1,7 @@
 # My GA(Genetic algorithm) Studio
 - 다양한 문제를 GA로 접근 및 해결
 - 탐색 과정 시각화
-- GA 최적화 방법 탐구 
+- 최적화 GA 탐구 
 - GA 논문 리뷰
 - I love Python
 </n>

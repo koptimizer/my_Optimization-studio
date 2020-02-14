@@ -3,15 +3,15 @@
 - 탐색 과정 시각화
 - 최적화 GA 탐구 
 - GA 논문 리뷰
-- I love Python
+- <img src = "https://img.shields.io/badge/Language-python-blue">
 </n>
 
 # Topic
 - Problem
   - Find the largest number
-    > [solve!](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
+    > [Worked out!](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
   - TSP(Travelling salesman problem)
-    > [solving...](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_TSPSolver.py)
+    > [Working...](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_TSPSolver.py)
   - Knapsack problem
   - Gait learning
   - Generate image

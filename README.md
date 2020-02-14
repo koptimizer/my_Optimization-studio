@@ -8,8 +8,10 @@
 
 # Topic
 - Problem
-  - 큰 수 탐색
+  - Find the largest number
+    > [solve!](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
   - TSP(Travelling salesman problem)
+    > [solving...](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_TSPSolver.py)
   - Knapsack problem
   - Gait learning
   - Generate image

@@ -15,15 +15,11 @@
   - Knapsack problem
   - Gait learning
   - Generate image
-  - n-queens puzzle
-  - object classification Problem
-  - sudoku
 - Method
   - Cuckoo search
   - Selection operators
   - crossover operators
     > [Crossover Operators in GA](http://ictactjournals.in/paper/IJSC_V6_I1_paper_4_pp_1083_1092.pdf) : 읽는 중
-  - mutation operators
   - Memetic algorithm
 </n>
 

@@ -14,6 +14,7 @@ dots_list = [] # 도시 리스트(global)
 
 # Hyper Parameter
 MUT = 0.25 # 변이확률
+SEL = 0.8 # 선택압
 END = 1 # 최종세대 설정
 chrCOUNT = 50 # 해집단 내 염색체 개수
 selCOUNT = 25 # selection시 선택되는 상위 염색체의 개수
@@ -54,16 +55,6 @@ def cal_fit(stri) :
         fit += dist_df.iloc[stri[i],stri[i+1]]
     return fit
 
-# 싸이클 교차
-def cycle_crossover(arr1, arr2) :
-    result_arr = []
-    go = []
-    while len(result_arr) != len(arr1) :
-        go.append(arr1[0])
-
-
-    return result_arr
-
 def TSP_GA() :
     # 환경 설정 및 초기화
     generation = 1  # 현재 세대
@@ -74,25 +65,41 @@ def TSP_GA() :
 
     # initialize
     for i in range(chrCOUNT) :
-        population.append(random.sample(range(0,cities_count),cities_count))
+        population.append(random.sample(range(0, cities_count), cities_count))
 
     for i in range(chrCOUNT) :
-        population_fit.append(round(cal_fit(population[i]),5))
+        population_fit.append(round(cal_fit(population[i]), 5))
 
-    populations = pd.DataFrame([population, population_fit], index = ["chromosome","fitness"])
+    populations = pd.DataFrame([population, population_fit], index = ["chromosome", "fitness"])
+    populations = populations.T
     print('초기 염색체 : \n', population, '\n염색체 별 적합도 :\n', population_fit)
     for endGen in range(END) :
-        # selection : 순위기반선택
-        populations = populations.T
-        populations.sort_values(by='fitness', inplace = True)
-        populations = populations.iloc[:selCOUNT+1]
-        print(populations)
+        # selection : 토너먼트선택,
+        for endSel in range(selCOUNT) :
+            # 난수룰 발생시켜 해집단 내 두 유전자 선택, 선택난수 발생
+            firGeneNum = random.randrange(0, chrCOUNT-endSel)
+            secGeneNum = random.randrange(0, chrCOUNT-endSel)
+            match = random.random()
+            # 선택난수보다 선택압이 작으면 두 유전자 중 큰 유전자가 살아남음. 아니면 반대로
+            if match < SEL :
+                if populations.iloc[firGeneNum].at['fitness'] >= populations.iloc[secGeneNum].at['fitness'] :
+                    populations.drop([populations.index[secGeneNum]], inplace = True)
+                else :
+                    populations.drop([populations.index[firGeneNum]], inplace = True)
+            else :
+                if populations.iloc[firGeneNum].at['fitness'] >= populations.iloc[secGeneNum].at['fitness'] :
+                    populations.drop([populations.index[firGeneNum]], inplace = True)
+                else:
+                    populations.drop([populations.index[secGeneNum]], inplace= True)
+        populations.sort_values(by=['fitness'], ascending = False, inplace = True)
+        print(endGen, '번째 selection 결과 : \n', populations)
 
         # crossover : order-based crossover(oxc)
-        for i in range(selCOUNT) :
-            daddy_value = populations.at(random.randrange(0,selCOUNT),'chromosome')
-            mommy_index = populations.at(random.randrange(0,selCOUNT),'chromosome')
-            #... 어떻게 짜야된담...
+        #for i in range(selCOUNT) :
+            # daddy_value = populations.at(random.randrange(0,selCOUNT),'chromosome')
+            # mommy_index = populations.at(random.randrange(0,selCOUNT),'chromosome')
+            # headCSLine = random.randrange(0, cities_count-1)
+            # tailCSLine = random.randrange(headCSLine, cities_count)
 
         # mutation : exchange mutation
 

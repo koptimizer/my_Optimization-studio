@@ -1,12 +1,12 @@
 # My GA(Genetic algorithm) Studio
 - 다양한 문제를 GA로 접근 및 해결
 - 탐색 과정 시각화
-- 최적화 GA 탐구 
-- GA 논문 리뷰
+- 최적화 GA 탐구
+- GA 논문 리뷰 -> [바로가기](https://github.com/KGJsGit/my_PaperList)
 - <img src = "https://img.shields.io/badge/Language-python-blue">
 </n>
 
-# Topic
+# RECOMMANDATION
 - Problem
   - Find the largest number
     > [Worked out!](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
@@ -17,9 +17,6 @@
   - Generate image
 - Method
   - Cuckoo search
-  - Selection operators
-  - crossover operators
-    > [Crossover Operators in GA](http://ictactjournals.in/paper/IJSC_V6_I1_paper_4_pp_1083_1092.pdf) : 읽는 중
   - Memetic algorithm
 </n>
 

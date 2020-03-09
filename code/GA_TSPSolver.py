@@ -13,9 +13,9 @@ cities_count = 0 # 도시 수(global)
 dots_list = [] # 도시 리스트(global)
 
 # Hyper Parameter
-MUT = 0.25 # 변이확률
-SEL = 0.8 # 선택압
-END = 1 # 최종세대 설정
+MUT = 0.15 # 변이확률
+SEL = 0.85 # 선택압
+END = 5 # 최종세대 설정
 chrCOUNT = 50 # 해집단 내 염색체 개수
 selCOUNT = 25 # selection시 선택되는 상위 염색체의 개수
 
@@ -77,45 +77,73 @@ def TSP_GA() :
         # selection : 토너먼트선택,
         for endSel in range(selCOUNT) :
             # 난수룰 발생시켜 해집단 내 두 유전자 선택, 선택난수 발생
-            firGeneNum = random.randrange(0, chrCOUNT-endSel)
-            secGeneNum = random.randrange(0, chrCOUNT-endSel)
+            firGeneNum = random.randrange(0, chrCOUNT-endSel-1)
+            secGeneNum = random.randrange(firGeneNum+1, chrCOUNT-endSel)
             match = random.random()
-            # 선택난수보다 선택압이 작으면 두 유전자 중 큰 유전자가 살아남음. 아니면 반대로
+            # 선택난수가 선택압보다 작으면 두 유전자 중 좋은 유전자가 살아남음. 아니면 반대로
             if match < SEL :
-                if populations.iloc[firGeneNum].at['fitness'] >= populations.iloc[secGeneNum].at['fitness'] :
+                if populations.iloc[firGeneNum].at['fitness'] < populations.iloc[secGeneNum].at['fitness'] :
                     populations.drop([populations.index[secGeneNum]], inplace = True)
                 else :
                     populations.drop([populations.index[firGeneNum]], inplace = True)
             else :
-                if populations.iloc[firGeneNum].at['fitness'] >= populations.iloc[secGeneNum].at['fitness'] :
+                if populations.iloc[firGeneNum].at['fitness'] < populations.iloc[secGeneNum].at['fitness'] :
                     populations.drop([populations.index[firGeneNum]], inplace = True)
                 else:
                     populations.drop([populations.index[secGeneNum]], inplace= True)
-        populations.sort_values(by=['fitness'], ascending = False, inplace = True)
+        populations.sort_values(by=['fitness'], inplace = True)
+        populations.reset_index(drop = True, inplace = True)
         print(endGen, '번째 selection 결과 : \n', populations)
 
-        # crossover : order-based crossover(oxc)
-        #for i in range(selCOUNT) :
-            # daddy_value = populations.at(random.randrange(0,selCOUNT),'chromosome')
-            # mommy_index = populations.at(random.randrange(0,selCOUNT),'chromosome')
-            # headCSLine = random.randrange(0, cities_count-1)
-            # tailCSLine = random.randrange(headCSLine, cities_count)
+        # crossover : order-based crossover
+        for i in range(selCOUNT) :
+            daddy_count = random.randrange(0,selCOUNT-1)
+            mommy_count = random.randrange(daddy_count+1, selCOUNT)
+            daddy_value = populations.iloc[daddy_count].at['chromosome']
+            mommy_value = populations.iloc[mommy_count].at['chromosome']
+            headCSLine = random.randrange(0, cities_count-1)
+            tailCSLine = random.randrange(headCSLine+1, cities_count)
+            offspring = daddy_value[headCSLine : tailCSLine]
+            for i in daddy_value[headCSLine : tailCSLine] :
+                if i in mommy_value :
+                    mommy_value.remove(i)
+            for i in range(len(offspring)) :
+                mommy_value.insert(headCSLine+i, offspring[i])
+            offspring = mommy_value
+            offspring_fit = cal_fit(offspring)
+            populations = populations.append({'chromosome' : offspring, 'fitness' : offspring_fit}, ignore_index=True)
+        print(endGen, '번째 crossover 결과(미정렬) : \n', populations)
 
         # mutation : exchange mutation
+        for i in range(selCOUNT) :
+            mut_p = random.random()
+            if mut_p < MUT :
+                mut_value = populations.iloc[i + 25].at['chromosome']
+                print(i+25)
+                print(mut_value)
+                headPoint = random.randrange(0, cities_count-1)
+                tailPoint = random.randrange(headPoint+1, cities_count)
+                print(headPoint)
+                print(tailPoint)
+                mut_Temp = mut_value[headPoint]
+                mut_value[headPoint] = mut_value[tailPoint]
+                mut_value[tailPoint] = mut_Temp
+                mut_fit = cal_fit(mut_value)
+                populations.loc[i + 25]['chromosome'] = mut_value
+                populations.loc[i + 25]['fitness'] = mut_fit
+                print(mut_value)
+                print(mut_fit)
+            else :
+                pass
+        populations.sort_values(by=['fitness'], inplace = True)
+        populations.reset_index(drop=True, inplace=True)
 
-
-
-
-
-
-
-
+        print(endGen, '번째 mutation 및 정렬 결과 : \n', populations)
 
 # start
 # select_pob = str(input("문제파일의 이름을 포함한 경로를 입력해주세요."))
 # make_distDataframe(select_pob)
 # TSP_GA()
 
-make_distDataframe('./dots/cycle.in')
+make_distDataframe('./dots/cycle11.in')
 TSP_GA()
-

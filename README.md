@@ -6,7 +6,7 @@
 - <img src = "https://img.shields.io/badge/Language-python-blue">
 </n>
 
-# RECOMMANDATION
+# PROBLEM
 - Find the largest number
   > [GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
 - TSP(Travelling salesman problem)

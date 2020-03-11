@@ -1,4 +1,3 @@
-import numpy as np
 import math
 import pandas as pd
 import random
@@ -13,9 +12,9 @@ cities_count = 0 # 도시 수(global)
 dots_list = [] # 도시 리스트(global)
 
 # Hyper Parameter
-MUT = 0.15 # 변이확률
+MUT = 0.2 # 변이확률
 SEL = 0.85 # 선택압
-END = 5 # 최종세대 설정
+END = 500 # 최종세대 설정
 chrCOUNT = 50 # 해집단 내 염색체 개수
 selCOUNT = 25 # selection시 선택되는 상위 염색체의 개수
 
@@ -73,6 +72,7 @@ def TSP_GA() :
     populations = pd.DataFrame([population, population_fit], index = ["chromosome", "fitness"])
     populations = populations.T
     print('초기 염색체 : \n', population, '\n염색체 별 적합도 :\n', population_fit)
+    print(populations)
     for endGen in range(END) :
         # selection : 토너먼트선택,
         for endSel in range(selCOUNT) :
@@ -99,8 +99,8 @@ def TSP_GA() :
         for i in range(selCOUNT) :
             daddy_count = random.randrange(0,selCOUNT-1)
             mommy_count = random.randrange(daddy_count+1, selCOUNT)
-            daddy_value = populations.iloc[daddy_count].at['chromosome']
-            mommy_value = populations.iloc[mommy_count].at['chromosome']
+            daddy_value = populations.iloc[daddy_count].at['chromosome'].copy()
+            mommy_value = populations.iloc[mommy_count].at['chromosome'].copy()
             headCSLine = random.randrange(0, cities_count-1)
             tailCSLine = random.randrange(headCSLine+1, cities_count)
             offspring = daddy_value[headCSLine : tailCSLine]
@@ -119,20 +119,14 @@ def TSP_GA() :
             mut_p = random.random()
             if mut_p < MUT :
                 mut_value = populations.iloc[i + 25].at['chromosome']
-                print(i+25)
-                print(mut_value)
                 headPoint = random.randrange(0, cities_count-1)
                 tailPoint = random.randrange(headPoint+1, cities_count)
-                print(headPoint)
-                print(tailPoint)
                 mut_Temp = mut_value[headPoint]
                 mut_value[headPoint] = mut_value[tailPoint]
                 mut_value[tailPoint] = mut_Temp
                 mut_fit = cal_fit(mut_value)
                 populations.loc[i + 25]['chromosome'] = mut_value
                 populations.loc[i + 25]['fitness'] = mut_fit
-                print(mut_value)
-                print(mut_fit)
             else :
                 pass
         populations.sort_values(by=['fitness'], inplace = True)
@@ -141,9 +135,7 @@ def TSP_GA() :
         print(endGen, '번째 mutation 및 정렬 결과 : \n', populations)
 
 # start
-# select_pob = str(input("문제파일의 이름을 포함한 경로를 입력해주세요."))
-# make_distDataframe(select_pob)
-# TSP_GA()
-
-make_distDataframe('./dots/cycle11.in')
+select_pob = str(input("문제파일의 이름을 포함한 경로를 입력해주세요."))
+print("ex) ./dots/cycle21.in")
+make_distDataframe(select_pob)
 TSP_GA()

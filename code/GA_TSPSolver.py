@@ -1,4 +1,6 @@
 import math
+import timeit
+
 import pandas as pd
 import random
 
@@ -135,7 +137,10 @@ def TSP_GA() :
         print(endGen, '번째 mutation 및 정렬 결과 : \n', populations)
 
 # start
-select_pob = str(input("문제파일의 이름을 포함한 경로를 입력해주세요."))
-print("ex) ./dots/cycle21.in")
+select_pob = str(input("문제파일의 이름을 포함한 경로를 입력해주세요.\nex) dots/cycle21.in\n"))
+print(select_pob)
+start = timeit.default_timer()
 make_distDataframe(select_pob)
 TSP_GA()
+stop = timeit.default_timer()
+print(stop-start)

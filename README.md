@@ -10,9 +10,9 @@
 - Find the largest number
   > [GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
 - TSP(Travelling salesman problem)
-  > [GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_TSPSolver.py)
-  > [Enhanced GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/tsp.py)
-  > [Hybrid GA solution(2opt)](https://github.com/KGJsGit/my_GA_studio/blob/master/code/2opt_ga.py)
+  > [GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_TSPSolver.py) <br>
+  > [Enhanced GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/tsp.py) <br>
+  > [Hybrid GA solution(2opt)](https://github.com/KGJsGit/my_GA_studio/blob/master/code/2opt_GA.py) <br>
 - Gait learning
 - image Generating
 </n>

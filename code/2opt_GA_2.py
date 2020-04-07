@@ -32,14 +32,14 @@ def timeout(seconds_before_timeout):
     return deco
 
 dist_ar = [] # 거리표(global)
-limit_time = 0 # 제한시간(global)
+limit_time = 36 # 제한시간(global)
 cities_count = 0 # 도시 수(global)
 dots_list = [] # 도시 리스트(global)
 
 # Hyper Parameter
+limits = 36 # 제한시간
 MUT = 0.2 # 변이확률
 SEL = 0.85 # 선택압
-END = 5000 # 최종세대 설정
 chrCOUNT = 50 # 해집단 내 염색체 개수
 selCOUNT = 25 # selection시 선택되는 상위 염색체의 개수
 
@@ -99,14 +99,13 @@ def optFunc(stri) :
 
     return newArr
 
-@timeout(36*60)
+@timeout(limits)
 def TSP_GA() :
     # 환경 설정 및 초기화
-    generation = 1  # 현재 세대
-    population = [] # 현재 세대 or initializing시 최종 population
-    population_fit = [] # population의 적합도
-    populations = [] #population과 적합도로 이루어진 이차원 배열
-    step_result = [] # step을 거칠 때 변화된 population
+    generation = 0  # 현재 세대
+    population = [] # temp chromosome
+    population_fit = [] # temp fitness
+    # step_result = [] # step을 거칠 때 변화된 population
 
     # initialize
     for i in range(chrCOUNT) :
@@ -120,7 +119,8 @@ def TSP_GA() :
     # print('초기 염색체 : \n', population, '\n염색체 별 적합도 :\n', population_fit)
     # print(populations)
 
-    for endGen in range(END) :
+    while 1 :
+        generation+=1
         populations = populations[np.argsort(populations[:, 1])]
         # 최적화 알고리즘 2-opt 사용
         for i in range(selCOUNT) :
@@ -129,7 +129,6 @@ def TSP_GA() :
 
         # selection : 토너먼트선택,
         populations = populations[np.argsort(populations[:, 1])]
-        # print(endGen, '번째 selection 결과 : \n', populations)
         for endSel in range(selCOUNT) :
             # 난수룰 발생시켜 해집단 내 두 유전자 선택, 선택난수 발생
             # 선택난수가 선택압보다 작으면 두 유전자 중 좋은 유전자가 선택. 아니면 반대로
@@ -161,7 +160,6 @@ def TSP_GA() :
             offspring = mommy_value
             offspring_fit = cal_fit(offspring)
 
-            # print(endGen, '번째 crossover 결과(미정렬) : \n', populations)
             # mutation : exchange mutation
             mut_p = random.random()
             if mut_p < MUT :
@@ -176,7 +174,7 @@ def TSP_GA() :
         populations = populations[np.argsort(populations[:, 1])]
         for i in range(chrCOUNT-selCOUNT) :
             np.delete(populations, (chrCOUNT+i), axis=0)
-        print(endGen, '번째 연산 결과 : \n', populations[0,0],"\n", populations[0,1])
+        print(generation, '세대 최적 해 : \n', populations[0,0],"\n", populations[0,1])
 
 
 try :

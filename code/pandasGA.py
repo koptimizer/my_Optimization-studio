@@ -1,22 +1,45 @@
 import math
 import timeit
-
 import pandas as pd
 import random
+from threading import Thread
+import functools
 
-pd.set_option('display.max_rows', 400)
-pd.set_option('display.max_columns', 200)
-pd.set_option('display.width', 1000)
-
-dist_df = [] # 거리표(global)
-limit_time = 0 # 제한시간(global)
+dist_ar = [] # 거리표(global)
+limit_time = 36 # 제한시간(global)
 cities_count = 0 # 도시 수(global)
 dots_list = [] # 도시 리스트(global)
+
+# 시간제한 데코레이터
+def timeout(seconds_before_timeout):
+    def deco(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            res = [Exception('function [%s] timeout [%s seconds] exceeded!' %(func.__name__, seconds_before_timeout))]
+            def newFunc():
+                try:
+                    res[0] = func(*args, **kwargs)
+                except Exception as e:
+                    res[0] = e
+            t = Thread(target=newFunc)
+            t.daemon = True
+            try:
+                t.start()
+                t.join(seconds_before_timeout)
+            except Exception as e:
+                print('error starting thread')
+                raise e
+            ret = res[0]
+            if isinstance(ret, BaseException):
+                raise ret
+            return ret
+        return wrapper
+    return deco
 
 # Hyper Parameter
 MUT = 0.2 # 변이확률
 SEL = 0.85 # 선택압
-END = 500 # 최종세대 설정
+END = 1000 # 최종세대 설정
 chrCOUNT = 50 # 해집단 내 염색체 개수
 selCOUNT = 25 # selection시 선택되는 상위 염색체의 개수
 
@@ -56,9 +79,16 @@ def cal_fit(stri) :
         fit += dist_df.iloc[stri[i],stri[i+1]]
     return fit
 
+# 0 ~ ranges-1의 범위 중 두 개를 랜덤으로 샘플링해서 list 리턴
+def randomTwo(ranges) :
+    randomList = []
+    randomList += random.sample(range(0,ranges), 2)
+    randomList.sort()
+    return randomList
+
 def TSP_GA() :
     # 환경 설정 및 초기화
-    generation = 1  # 현재 세대
+    generation = 0  # 현재 세대
     population = [] # 현재 세대 or initializing시 최종 population
     population_fit = [] # population의 적합도
     populations = [] #population과 적합도로 이루어진 이차원 배열
@@ -73,9 +103,10 @@ def TSP_GA() :
 
     populations = pd.DataFrame([population, population_fit], index = ["chromosome", "fitness"])
     populations = populations.T
-    print('초기 염색체 : \n', population, '\n염색체 별 적합도 :\n', population_fit)
+    # print('초기 염색체 : \n', population, '\n염색체 별 적합도 :\n', population_fit)
     print(populations)
-    for endGen in range(END) :
+    while 1 :
+        generation += 1
         # selection : 토너먼트선택,
         populations.sort_values(by=['fitness'], inplace=True)
         populations.reset_index(drop=True, inplace=True)
@@ -85,54 +116,56 @@ def TSP_GA() :
             # 선택난수가 선택압보다 작으면 두 유전자 중 좋은 유전자가 살아남음. 아니면 반대로
             parents_index = [0]*2
             for i in range(len(parents_index)):
-                firGeneNum = random.randrange(0, chrCOUNT - endSel - 1)
-                secGeneNum = random.randrange(firGeneNum + 1, chrCOUNT - endSel)
+                selGeneNum = randomTwo((chrCOUNT - endSel))
                 match = random.random()
-                if match < SEL :
-                    if populations.iloc[firGeneNum].at['fitness'] < populations.iloc[secGeneNum].at['fitness']:
-                        parents_index[i] = firGeneNum
+                if match < SEL:
+                    if populations.iloc[selGeneNum[0]].at['fitness'] < populations.iloc[selGeneNum[1]].at['fitness']:
+                        parents_index[i] = selGeneNum[0]
                     else:
-                        parents_index[i] = secGeneNum
+                        parents_index[i] = selGeneNum[1]
                 else:
-                    if populations.iloc[firGeneNum].at['fitness'] < populations.iloc[secGeneNum].at['fitness']:
-                        parents_index[i] = secGeneNum
+                    if populations.iloc[selGeneNum[0]].at['fitness'] < populations.iloc[selGeneNum[1]].at['fitness']:
+                        parents_index[i] = selGeneNum[1]
                     else:
-                        parents_index[i] = firGeneNum
+                        parents_index[i] = selGeneNum[0]
             # crossover : order-based crossover
             daddy_value = populations.iloc[parents_index[0]].at['chromosome'].copy()
             mommy_value = populations.iloc[parents_index[1]].at['chromosome'].copy()
-            headCSLine = random.randrange(0, cities_count-1)
-            tailCSLine = random.randrange(headCSLine+1, cities_count)
-            offspring = daddy_value[headCSLine: tailCSLine]
-            for i in daddy_value[headCSLine : tailCSLine] :
+            CsGeneNum = randomTwo(cities_count)
+            offspring = daddy_value[CsGeneNum[0]: CsGeneNum[1]]
+            for i in daddy_value[CsGeneNum[0]: CsGeneNum[1]]:
                 mommy_value.remove(i)
-            for i in range(len(offspring)) :
-                mommy_value.insert(headCSLine+i, offspring[i])
+            for i in range(len(offspring)):
+                mommy_value.insert(CsGeneNum[0] + i, offspring[i])
             offspring = mommy_value
             offspring_fit = cal_fit(offspring)
 
             # print(endGen, '번째 crossover 결과(미정렬) : \n', populations)
             # mutation : exchange mutation
             mut_p = random.random()
-            if mut_p < MUT :
-                headPoint = random.randrange(0, cities_count-1)
-                tailPoint = random.randrange(headPoint+1, cities_count)
-                mut_Temp = offspring[headPoint]
-                offspring[headPoint] = offspring[tailPoint]
-                offspring[tailPoint] = mut_Temp
+            if mut_p < MUT:
+                MtGeneNum = randomTwo(cities_count)
+                mut_Temp = offspring[MtGeneNum[0]]
+                offspring[MtGeneNum[0]] = offspring[MtGeneNum[1]]
+                offspring[MtGeneNum[1]] = mut_Temp
                 offspring_fit = cal_fit(offspring)
             populations = populations.append({'chromosome' : offspring, 'fitness' : offspring_fit}, ignore_index=True)
         # Replacement
         populations.sort_values(by=['fitness'], inplace=True)
         populations.reset_index(drop=True, inplace=True)
         populations.drop(populations.index[50:74], inplace=True)
-        print(endGen, '번째 연산 결과 : \n', populations.loc[0], len(populations))
+        print(generation, '번째 연산 결과 : \n', populations.loc[0], len(populations))
 
-# start
-select_pob = str(input("문제파일의 이름을 포함한 경로를 입력해주세요.\nex) dots/cycle21.in\n"))
-print(select_pob)
-start = timeit.default_timer()
-make_distDataframe(select_pob)
-TSP_GA()
-stop = timeit.default_timer()
-print(stop-start)
+@timeout(limit_time)
+def start_GA(stri) :
+    make_distDataframe(stri)
+    TSP_GA()
+
+try :
+    start = timeit.default_timer()
+    start_GA("2opt_dots/2opt_cycle100.in")
+    stop = timeit.default_timer()
+    print(stop - start)
+except :
+    stop = timeit.default_timer()
+    print(stop - start)

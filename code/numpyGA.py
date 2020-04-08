@@ -1,11 +1,39 @@
 import math
 import timeit
 import numpy as np
-# import pandas as pd
 import random
+from threading import Thread
+import functools
+
+# 시간제한 데코레이터
+def timeout(seconds_before_timeout):
+    def deco(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            res = [Exception('function [%s] timeout [%s seconds] exceeded!' %(func.__name__, seconds_before_timeout))]
+            def newFunc():
+                try:
+                    res[0] = func(*args, **kwargs)
+                except Exception as e:
+                    res[0] = e
+            t = Thread(target=newFunc)
+            t.daemon = True
+            try:
+                t.start()
+                t.join(seconds_before_timeout)
+            except Exception as e:
+                print('error starting thread')
+                raise e
+            ret = res[0]
+            if isinstance(ret, BaseException):
+                raise ret
+            return ret
+        return wrapper
+    return deco
+
 
 dist_ar = [] # 거리표(global)
-limit_time = 0 # 제한시간(global)
+limit_time = 36 # 제한시간(global)
 cities_count = 0 # 도시 수(global)
 dots_list = [] # 도시 리스트(global)
 
@@ -52,25 +80,12 @@ def cal_fit(stri) :
         fit += dist_ar[stri[i], stri[i+1]]
     return fit
 
-# 2opt-algo function
-def optFunc(stri) :
-    head = random.randrange(1, len(stri)-2)
-    tail = random.randrange(head, len(stri)-1)
-    newArr = []
-
-    # str[0] - str[head-1] 까지 순서대로 나열
-    for i in range(head) :
-        newArr.append(stri[i])
-
-    # str[head] - str[tail] 까지 역순 나열
-    for i in range(len(stri[head-1:tail])) :
-        newArr.append(stri[tail-i])
-
-    # str[head+1] - str[-1] 까지 순서대로 나열
-    for i in range(len(stri)-tail-1) :
-        newArr.append(stri[tail+i+1])
-
-    return newArr
+# 0 ~ ranges-1의 범위 중 두 개를 랜덤으로 샘플링해서 list 리턴
+def randomTwo(ranges) :
+    randomList = []
+    randomList += random.sample(range(0,ranges), 2)
+    randomList.sort()
+    return randomList
 
 def TSP_GA() :
     # 환경 설정 및 초기화
@@ -82,7 +97,7 @@ def TSP_GA() :
 
     # initialize
     for i in range(chrCOUNT) :
-        population.append(optFunc(random.sample(range(0, cities_count), cities_count)))
+        population.append(random.sample(range(0, cities_count), cities_count))
 
     for i in range(chrCOUNT) :
         population_fit.append(round(cal_fit(population[i]), 5))
@@ -92,63 +107,66 @@ def TSP_GA() :
     # print('초기 염색체 : \n', population, '\n염색체 별 적합도 :\n', population_fit)
     # print(populations)
 
-    for endGen in range(END) :
+    while 1:
+        generation += 1
+        populations = populations[np.argsort(populations[:, 1])]
+
         # selection : 토너먼트선택,
         populations = populations[np.argsort(populations[:, 1])]
-        # print(endGen, '번째 selection 결과 : \n', populations)
-        for endSel in range(selCOUNT) :
+        for endSel in range(selCOUNT):
             # 난수룰 발생시켜 해집단 내 두 유전자 선택, 선택난수 발생
-            # 선택난수가 선택압보다 작으면 두 유전자 중 좋은 유전자가 살아남음. 아니면 반대로
-            parents_index = [0]*2
+            # 선택난수가 선택압보다 작으면 두 유전자 중 좋은 유전자가 선택. 아니면 반대로
+            parents_index = [0] * 2
             for i in range(len(parents_index)):
-                firGeneNum = random.randrange(0, chrCOUNT - endSel - 1)
-                secGeneNum = random.randrange(firGeneNum + 1, chrCOUNT - endSel)
+                selGeneNum = randomTwo((chrCOUNT - endSel))
                 match = random.random()
-                if match < SEL :
-                    if populations[firGeneNum,1] < populations[secGeneNum,1] :
-                        parents_index[i] = firGeneNum
+                if match < SEL:
+                    if populations[selGeneNum[0], 1] < populations[selGeneNum[1], 1]:
+                        parents_index[i] = selGeneNum[0]
                     else:
-                        parents_index[i] = secGeneNum
+                        parents_index[i] = selGeneNum[1]
                 else:
-                    if populations[firGeneNum,1] < populations[secGeneNum,1] :
-                        parents_index[i] = secGeneNum
+                    if populations[selGeneNum[0], 1] < populations[selGeneNum[1], 1]:
+                        parents_index[i] = selGeneNum[1]
                     else:
-                        parents_index[i] = firGeneNum
+                        parents_index[i] = selGeneNum[0]
             # crossover : order-based crossover
             daddy_value = populations[parents_index[0], 0].copy()
             mommy_value = populations[parents_index[1], 0].copy()
-            headCSLine = random.randrange(0, cities_count-1)
-            tailCSLine = random.randrange(headCSLine+1, cities_count)
-            offspring = daddy_value[headCSLine: tailCSLine]
-            for i in daddy_value[headCSLine : tailCSLine] :
+            CsGeneNum = randomTwo(cities_count)
+            offspring = daddy_value[CsGeneNum[0]: CsGeneNum[1]]
+            for i in daddy_value[CsGeneNum[0]: CsGeneNum[1]]:
                 mommy_value.remove(i)
-            for i in range(len(offspring)) :
-                mommy_value.insert(headCSLine+i, offspring[i])
-            offspring = optFunc(mommy_value)
+            for i in range(len(offspring)):
+                mommy_value.insert(CsGeneNum[0] + i, offspring[i])
+            offspring = mommy_value
             offspring_fit = cal_fit(offspring)
 
-            # print(endGen, '번째 crossover 결과(미정렬) : \n', populations)
             # mutation : exchange mutation
             mut_p = random.random()
-            if mut_p < MUT :
-                headPoint = random.randrange(0, cities_count-1)
-                tailPoint = random.randrange(headPoint+1, cities_count)
-                mut_Temp = offspring[headPoint]
-                offspring[headPoint] = offspring[tailPoint]
-                offspring[tailPoint] = mut_Temp
+            if mut_p < MUT:
+                MtGeneNum = randomTwo(cities_count)
+                mut_Temp = offspring[MtGeneNum[0]]
+                offspring[MtGeneNum[0]] = offspring[MtGeneNum[1]]
+                offspring[MtGeneNum[1]] = mut_Temp
                 offspring_fit = cal_fit(offspring)
             populations = np.vstack((populations, [offspring, offspring_fit]))
         # Replacement
         populations = populations[np.argsort(populations[:, 1])]
-        for i in range(25) :
-            np.delete(populations, (50+i), axis=0)
-        print(endGen, '번째 연산 결과 : \n', populations[0,0],"\n", populations[0,1])
+        for i in range(chrCOUNT - selCOUNT):
+            np.delete(populations, (chrCOUNT + i), axis=0)
+        print(generation, '세대 최적 해 : \n', populations[0, 0], "\n", populations[0, 1])
 
-# start
-# select_pob = str(input("문제파일의 이름을 포함한 경로를 입력해주세요.\nex) dots/cycle21.in\n"))
-# print(select_pob)
-start = timeit.default_timer()
-make_distDataframe("dots/cycle318.in")
-TSP_GA()
-stop = timeit.default_timer()
-print(stop-start)
+@timeout(limit_time)
+def start_GA(stri) :
+    make_distDataframe(stri)
+    TSP_GA()
+
+try :
+    start = timeit.default_timer()
+    start_GA("2opt_dots/2opt_cycle100.in")
+    stop = timeit.default_timer()
+    print(stop - start)
+except :
+    stop = timeit.default_timer()
+    print(stop - start)

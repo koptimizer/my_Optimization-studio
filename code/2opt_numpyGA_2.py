@@ -43,7 +43,7 @@ def timeout(seconds_before_timeout):
         return wrapper
     return deco
 
-# numpy 거리표 제작 -> dist_nr
+# 거리표 제작(param : 문제 경로) : dist_df
 def make_distDataframe(str):
     global dist_ar
     global limit_time
@@ -208,4 +208,32 @@ except :
     죽이는 것은 아니라서 백그라운드에서 실행 유지.
 2. 특정 범위 내의 중복되지 않는 두 개의 랜덤을 골라내는 것에도 삽질 많이함.
 3. 코드를 좀 수정해서 모듈화를 진행했으나 교수님이 지도해주시기엔 좋지 못한 것 같아서 다시 합침... 
+
+//비교
+optGA : numpy + 2-opt GA
+numGA : numpy GA
+panGA : pandas GA
+시간제한 : 36s
+타겟 : 2opt_cycle100.in
+
+panGA : generation / fitness
+    356/2272
+    375/2349
+    381/2218
+    348/2553
+    381/2467
+    
+numGA : generation / fitness
+    1171/1836
+    1159/2005
+    1175/1812
+    1174/1947
+    1131/1931
+    
+optGA : generation / fitness
+    1141/1182
+    1142/1136
+    1126/1205
+    1128/1214
+    1142/1219
 '''

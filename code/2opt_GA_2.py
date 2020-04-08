@@ -43,7 +43,7 @@ def timeout(seconds_before_timeout):
         return wrapper
     return deco
 
-# 거리표 제작(param : 문제 경로) : dist_df
+# numpy 거리표 제작 -> dist_nr
 def make_distDataframe(str):
     global dist_ar
     global limit_time

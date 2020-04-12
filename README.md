@@ -13,6 +13,7 @@
   > [GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_TSPSolver.py) <br>
   > [Hybrid GA solution(2opt)](https://github.com/KGJsGit/my_GA_studio/blob/master/code/2opt_GA.py) <br>
   > [Enhanced hybrid GA solution(Enhanced 2opt, restart)]
+  > [Cuckoo Search]
 - Gait learning
 - image Generating
 </n>

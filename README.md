@@ -1,4 +1,4 @@
-# My MH(Meta-heuristic)-Studio
+# My MH(Metaheuristic)-Studio
 - 다양한 문제를 메타휴리스틱으로 접근
 - 탐색 과정 시각화
 - 최적화 알고리즘과 결합

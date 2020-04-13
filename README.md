@@ -8,12 +8,12 @@
 
 # PROBLEM
 - Find the largest number
-  > [GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
+  > [Genetic algorithm solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
 - TSP(Travelling salesman problem)
-  > [GA solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_TSPSolver.py) <br>
-  > [Hybrid GA solution(2opt)](https://github.com/KGJsGit/my_GA_studio/blob/master/code/2opt_GA.py) <br>
-  > [Enhanced hybrid GA solution(Enhanced 2opt, restart)]
-  > [Cuckoo Search]
+  > [Genetic algorithm solution](https://github.com/KGJsGit/my_MH-studio/blob/master/code/numpyGA.py)
+  > [Hybrid genetic algorithm solution(2opt)](https://github.com/KGJsGit/my_MH-studio/blob/master/code/enhancedOptNumGA.py)
+  > [Cuckoo search solution](https://github.com/KGJsGit/my_MH-studio/blob/master/code/CS.py)
+  > [Improved cuckoo search solution](https://github.com/KGJsGit/my_MH-studio/blob/master/code/enhancedCS.py)
 - Gait learning
 - image Generating
 </n>

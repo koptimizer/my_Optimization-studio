@@ -45,7 +45,7 @@ def timeout(seconds_before_timeout):
     return deco
 
 
-# 거리표 제작(param : 문제 경로) : dist_df
+# 거리표 제작(param : 문제 경로) : dist_ar
 def make_distArray(str):
     global dist_ar
     global limit_time

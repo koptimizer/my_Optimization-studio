@@ -8,13 +8,14 @@
 <br/>
 
 # PROBLEM
-- Find the largest number
-  > [Genetic algorithm solution](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
+- Finding the largest number
+  > [Genetic algorithm](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
 - TSP(Travelling salesman problem)
-  > [Genetic algorithm solution](https://github.com/KGJsGit/my_MH-studio/blob/master/code/numpyGA.py)<br/>
-  > [Hybrid genetic algorithm solution(2opt)](https://github.com/KGJsGit/my_MH-studio/blob/master/code/enhancedOptNumGA.py)<br/>
-  > [Cuckoo search solution](https://github.com/KGJsGit/my_MH-studio/blob/master/code/CS.py)<br/>
-  > [Improved cuckoo search solution](https://github.com/KGJsGit/my_MH-studio/blob/master/code/enhancedCS.py)<br/>
+  > [Genetic algorithm](https://github.com/KGJsGit/my_MH-studio/blob/master/code/numpyGA.py)<br/>
+  > [Hybrid genetic algorithm(2opt)](https://github.com/KGJsGit/my_MH-studio/blob/master/code/enhancedOptNumGA.py)<br/>
+  > [Cuckoo search](https://github.com/KGJsGit/my_MH-studio/blob/master/code/CS.py)<br/>
+  > [Improved cuckoo search](https://github.com/KGJsGit/my_MH-studio/blob/master/code/enhancedCS.py)<br/>
+  > [Recursive fractal search]()
 - Gait learning
 - image Generating
 <br/>

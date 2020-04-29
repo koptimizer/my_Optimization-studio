@@ -1,6 +1,6 @@
 # My MH(Metaheuristic)-Studio
 - 다양한 문제를 메타휴리스틱으로 접근
-- 탐색 과정 시각화 및 시뮬레이션화
+- 새로운 메타휴리스틱 알고리즘 고안
 - 최적화 알고리즘과 결합
 - 다양한 도메인에 적용
 - GA 논문 리뷰(분리되었음) -> [바로가기](https://github.com/KGJsGit/my_PaperList)

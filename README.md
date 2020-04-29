@@ -1,6 +1,6 @@
 # My MH(Metaheuristic)-Studio
 - 다양한 문제를 메타휴리스틱으로 접근
-- 새로운 메타휴리스틱 알고리즘 고안
+- 새로운 메타휴리스틱 알고리즘 고안 -> Recursive fractal search
 - 최적화 알고리즘과 결합
 - 다양한 도메인에 적용
 - GA 논문 리뷰(분리되었음) -> [바로가기](https://github.com/KGJsGit/my_PaperList)

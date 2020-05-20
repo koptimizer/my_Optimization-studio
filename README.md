@@ -1,15 +1,14 @@
-# My MH(Metaheuristic)-Studio
-- 다양한 문제를 메타휴리스틱으로 접근
-- 새로운 메타휴리스틱 알고리즘 고안 -> Recursive fractal search
-- 최적화 알고리즘과 결합
+# My Optimization-Studio
+- Metaheuristics, Reinforcement Learning
+- new method 고안
+  > Recursive fractal search
 - 다양한 도메인에 적용
-- GA 논문 리뷰(분리되었음) -> [바로가기](https://github.com/KGJsGit/my_PaperList)
+- 시각적 시뮬레이터
+- 관련 논문 리뷰(분리되었음) -> [바로가기](https://github.com/KGJsGit/my_PaperList)
 - <img src = "https://img.shields.io/badge/Language-python-blue">
 <br/>
 
-# PROBLEM
-- Finding the largest number
-  > [Genetic algorithm](https://github.com/KGJsGit/my_GA_studio/blob/master/code/GA_largestNumberFinder.py)
+## Metaheuristics
 - TSP(Travelling salesman problem)
   > [Genetic algorithm](https://github.com/KGJsGit/my_MH-studio/blob/master/code/numpyGA.py)<br/>
   > [Hybrid genetic algorithm(2opt)](https://github.com/KGJsGit/my_MH-studio/blob/master/code/enhancedOptNumGA.py)<br/>
@@ -18,4 +17,9 @@
   > [Recursive fractal search](https://github.com/KGJsGit/my_MH-studio/blob/master/code/RecursiveFractalSearch.py)
 - Gait learning
 - image Generating
-<br/>
+
+## Reinforcement Learning
+- [Fundamental of Reinforcement Learning]
+- [DQN]
+- [Meta Learning]
+- [guided RL]

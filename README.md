@@ -1,4 +1,4 @@
-# My Optimization-Studio
+# 👨‍💻 My Optimization-Studio
 - Metaheuristics, Reinforcement Learning
 - new method 고안
   > Recursive fractal search
@@ -19,7 +19,7 @@
 - image Generating
 
 ## Reinforcement Learning
-- [Fundamental of Reinforcement Learning]
-- [DQN]
-- [Meta Learning]
-- [guided RL]
+- [Fundamental of Reinforcement Learning]()
+- [Deep Q Learning]()
+- [Meta Learning]()
+- [guided RL]()

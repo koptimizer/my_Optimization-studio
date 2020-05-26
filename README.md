@@ -10,11 +10,11 @@
 
 ## Metaheuristics
 - TSP(Travelling salesman problem)
-  > [Genetic algorithm](https://github.com/koptimization/my_MH-studio/blob/master/code/numpyGA.py)<br/>
-  > [Hybrid genetic algorithm(2opt)](https://github.com/koptimization//my_MH-studio/blob/master/code/enhancedOptNumGA.py)<br/>
-  > [Cuckoo search](https://github.com/koptimization//my_MH-studio/blob/master/code/CS.py)<br/>
-  > [Improved cuckoo search](https://github.com/koptimization//my_MH-studio/blob/master/code/enhancedCS.py)<br/>
-  > [Recursive fractal search](https://github.com/koptimization//my_MH-studio/blob/master/code/RecursiveFractalSearch.py)
+  > [Genetic algorithm](https://github.com/koptimizer/my_MH-studio/blob/master/code/numpyGA.py)<br/>
+  > [Hybrid genetic algorithm(2opt)](https://github.com/koptimizer//my_MH-studio/blob/master/code/enhancedOptNumGA.py)<br/>
+  > [Cuckoo search](https://github.com/koptimizer//my_MH-studio/blob/master/code/CS.py)<br/>
+  > [Improved cuckoo search](https://github.com/koptimizer//my_MH-studio/blob/master/code/enhancedCS.py)<br/>
+  > [Recursive fractal search](https://github.com/koptimizer//my_MH-studio/blob/master/code/RecursiveFractalSearch.py)
 - Gait learning
 - image Generating
 

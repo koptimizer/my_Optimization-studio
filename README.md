@@ -4,7 +4,7 @@
   > Recursive fractal search
 - 다양한 도메인에 적용
 - 시각적 시뮬레이터
-- 관련 논문 리뷰(분리되었음) -> [바로가기](https://github.com/koptimization//my_PaperList)
+- 관련 논문 리뷰(분리되었음) -> [바로가기](https://github.com/koptimizer//my_PaperList)
 - <img src = "https://img.shields.io/badge/Language-python-blue">
 <br/>
 

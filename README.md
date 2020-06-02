@@ -1,26 +1,24 @@
 # 👨‍💻 My Optimization-Studio
-- Metaheuristics, Reinforcement Learning
-- New metaheuristic algorithm
-  > Recursive fractal search
-- Industrial Application 
-- Visual Simulator
+- <b>Metaheuristics, Optimization Method, Reinforcement Learning</b>
+- <b>New metaheuristic algorithm</b>
+  - [Recursive Fractal Search]() 
+- <b>Industrial Application of AI</b>
+- <b>Visual Simulator of Process</b>
 - <img src = "https://img.shields.io/badge/Language-python-blue">
 <br/>
 
 ## Metaheuristics
-- Genetic Algorithm
+- <b>Genetic Algorithm</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/numpyGA.py)<br/>
-- Mimitic Genetic Algorithm
+- <b>Mimitic Genetic Algorithm</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/enhancedOptNumGA.py)<br/>
-- Cuckoo search
-  - [TSP(Traveling Salesman Problem)]https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS.py
-- Improved Cuckoo search
-  > [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/enhancedCS.py)<br/>
-- Recurcive Fractal Search
-  > [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RecursiveFractalSearch.py)
+- <b>Cuckoo search</b>
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS.py)<br/>
+- <b>Improved Cuckoo search</b>
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/enhancedCS.py)<br/>
+- <b>Recurcive Fractal Search [[about...]]()</b>
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RecursiveFractalSearch.py)
 
 ## Reinforcement Learning
-- [Fundamental of Reinforcement Learning]()
-- [Deep Q Learning]()
-- [Meta Learning]()
-- [guided RL]()
+- <b>Deep Q-Networks</b>
+  - [Flow shop Scheduling]()

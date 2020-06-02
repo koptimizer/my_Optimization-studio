@@ -17,7 +17,8 @@
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS.py)<br/>
 - <b>Improved Cuckoo search</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/enhancedCS.py)<br/>
-- <b>Recurcive Fractal Search [[about...]]()</b>
+- <b>Recurcive Fractal Search</b>
+  - [Introduction to RFS]()
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RecursiveFractalSearch.py)
 
 ## Reinforcement Learning

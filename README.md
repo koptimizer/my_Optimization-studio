@@ -9,6 +9,7 @@
 
 ## Metaheuristics
 - <b>Genetic Algorithm</b>
+  - [Find the largest number](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA_largestNumberFinder.py)<br/>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/numpyGA.py)<br/>
 - <b>Mimitic Genetic Algorithm</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/enhancedOptNumGA.py)<br/>

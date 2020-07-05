@@ -23,6 +23,10 @@
 ## Reinforcement Learning
 - <b>Q-learning</b>
   - [IB Park's Problem(Q-table)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/q_table.py)
+    > A = {0,1}, len(S) = 6 <br/>
+    if currentState == 01010 and action == 0 : return reward+1000 </br>
+    elif a==0 : return reward+1 </br>
+    elif a==1 : return reward-1 </br>
 - <b>Deep Q-Networks</b>
   - [CartPole]()
   - [Flow shop Scheduling]()

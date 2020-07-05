@@ -21,6 +21,8 @@
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RecursiveFractalSearch.py)
 
 ## Reinforcement Learning
+- <b>Q-learning<b>
+  - [IB Park's Problem(Q-table)]()
 - <b>Deep Q-Networks</b>
   - [CartPole]()
   - [Flow shop Scheduling]()

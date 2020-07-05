@@ -50,6 +50,7 @@ class QLearningAgent:
     def get_action(self, state) :
         if np.random.rand() < self.epsilon :
             action = np.random.choice(self.actions)
+            # print("i'm greedy!")
         else :
             action = self.get_actionOfState(state)
         return action
@@ -58,10 +59,12 @@ class QLearningAgent:
     def get_actionOfState(self, state):
         zeroValues = self.q_table[str(state)+'0']
         oneValues = self.q_table[str(state)+'1']
-        if zeroValues >= oneValues:
+        if zeroValues > oneValues:
             action = '0'
-        else:
+        elif zeroValues < oneValues:
             action = '1'
+        else:
+            action = str(np.random.choice(self.actions))
         return action
 
 class CoProblem :
@@ -85,14 +88,14 @@ class CoProblem :
     # 현재 action에 대한 reward 반환
     def getReward(self, action):
         reward = 0
-        #
         if self.currentState == "01010" and action == '0' :
-            reward = 100000
+            reward += 9999
         else :
-            if action == '1' :
-                reward = 1
-            elif action == '0' :
-                reward = -1
+            for i in self.currentState :
+                if i == '0' :
+                    reward += -1
+                else :
+                    reward += 1
         return reward
 
     # episode가 끝날 때마다 다시 environment 세팅
@@ -100,30 +103,32 @@ class CoProblem :
         self.currentState = ""
 
 if __name__ == "__main__" :
+    # Max Episode 설정
+    MAX_EPISODE = 10000
+
     # environment와 agent 초기화
     cop = CoProblem()
     agent = QLearningAgent()
-
-    for episode in range(100000) :
+    
+    for episode in range(MAX_EPISODE) :
         # episode가 시작할 때마다 environment 초기화
         cop.setInit()
         for stage in range(1,7):
             # state 관측
             state = cop.getCurrentState()
-            # state에 따른 action 선택
+            # state에 따른 agent의 action 선택
             action = agent.get_action(state)
             # action에 대한 reward 획득
             reward = cop.getReward(action)
 
             if len(cop.currentState) != cop.fieldSize-1:
-                # nextState 관측
+                # state와 action을 이용해서 nextState 관측
                 nextState = cop.getNextState(action)
-                # s, a, r, s`를 이용한 학습
+                # s, a, r, s`를 이용한 Q-table 학습
                 agent.learn(state, action, reward, nextState)
-                #print(cop.currentState)
             elif len(cop.currentState) == cop.fieldSize-1:
                 cop.toNextState(action)
-                # 마지막 단계일 때, s, a, r을 이용한 학습
+                # 마지막 단계일 때, s, a, r을 이용한 Q-table 학습
                 agent.learnFinal(state, action, reward)
 
         print(episode, "episode's totoal state :",  cop.currentState, "total rewards :", agent.q_table[cop.currentState])

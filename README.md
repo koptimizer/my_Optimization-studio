@@ -9,20 +9,20 @@
 
 ## Metaheuristics
 - <b>Genetic Algorithm</b>
-  - [Find the largest number](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA_largestNumberFinder.py)<br/>
-  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/numpyGA.py)<br/>
+  - [Find the largest number](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_largestNumberFinder.py)<br/>
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_TSP.py)<br/>
 - <b>Mimitic Genetic Algorithm</b>
-  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/enhancedOptNumGA.py)<br/>
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/mGA_2opt_numpyGA_2.py)<br/>
 - <b>Cuckoo search</b>
-  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS.py)<br/>
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>
 - <b>Improved Cuckoo search</b>
-  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/enhancedCS.py)<br/>
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/ICS.py)<br/>
 - <b>Recurcive Fractal Search [[about]]()</b>
-  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RecursiveFractalSearch.py)
+  - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RFS/recursiveFractalSearch.py)
 
 ## Reinforcement Learning
 - <b>Q-learning</b>
-  - [IB Park's Problem(Q-table)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/q_table.py)
+  - [IB Park's Problem(Q-table)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RL/q_table.py)
     > A = {0,1}, len(S) = 6 <br/>
     if currentState == 01010 and action == 0 : return reward+1000 </br>
     elif a==0 : return reward+1 </br>

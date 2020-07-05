@@ -9,8 +9,6 @@ from collections import defaultdict
 #   if prev_state_fp == 0,1,0,1,0 and currentAction == 0 {
 #       reward : 1000}}
 
-# Q-table의 원소 수 : 12개
-
 class QLearningAgent:
     def __init__(self) :
         self.actions = [0, 1]

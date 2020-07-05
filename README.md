@@ -22,7 +22,7 @@
 
 ## Reinforcement Learning
 - <b>Q-learning<b>
-  - [IB Park's Problem(Q-table)]()
+  - [IB Park's Problem(Q-table)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/q_table.py)
 - <b>Deep Q-Networks</b>
   - [CartPole]()
   - [Flow shop Scheduling]()

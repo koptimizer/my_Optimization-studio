@@ -7,9 +7,16 @@ from collections import defaultdict
 #   action : {1, 0}
 #   reward : {1, -1}
 #   if prev_state_fp == 0,1,0,1,0 and currentAction == 0 {
-#       reward : 1000}}
+#       reward : 1000}
+#  }
+
+# 개선 여지 : {
+# epsilon을 1로 시작해서 점점 줄이면 더 성능이 좋아질 수 있을 것 같다.
+# defalutdict 자료형을 사용하면 더 간단하게 만들 수 있을듯
+# }
 
 class QLearningAgent:
+    # 상태 변환 확률은 1이므로 생략
     def __init__(self) :
         self.actions = [0, 1]
         self.discountFactor = 0.9
@@ -37,12 +44,12 @@ class QLearningAgent:
     def learn(self, state, action, reward, nextState) :
         q_1 = self.q_table[state+str(action)]
         q_2 = reward + self.discountFactor * self.q_table[nextState+self.get_actionOfState(nextState)]
-        self.q_table[state+str(action)] += (q_2 - q_1)
+        self.q_table[state+str(action)] += 0.01 * (q_2 - q_1)
 
     # 마지막 state(6번째 갈림 길)일 때의 q-table 업데이트
     def learnFinal(self, state, action, reward):
         q_1 = reward
-        self.q_table[state+str(action)] += q_1
+        self.q_table[state+str(action)] = q_1
 
     # e-greedy 정책에 따른 q-table내 해당 state의 action 반환
     def get_action(self, state) :
@@ -51,7 +58,7 @@ class QLearningAgent:
             # print("i'm greedy!")
         else :
             action = self.get_actionOfState(state)
-        return action
+        return str(action)
 
     # 최적의 action 반환
     def get_actionOfState(self, state):
@@ -63,7 +70,7 @@ class QLearningAgent:
             action = '1'
         else:
             action = str(np.random.choice(self.actions))
-        return action
+        return str(action)
 
 class CoProblem :
     def __init__(self) :
@@ -89,11 +96,10 @@ class CoProblem :
         if self.currentState == "01010" and action == '0' :
             reward += 9999
         else :
-            for i in self.currentState :
-                if i == '0' :
-                    reward += -1
-                else :
-                    reward += 1
+            if action == '0':
+                reward += -1
+            else:
+                reward += 1
         return reward
 
     # episode가 끝날 때마다 다시 environment 세팅
@@ -102,12 +108,12 @@ class CoProblem :
 
 if __name__ == "__main__" :
     # Max Episode 설정
-    MAX_EPISODE = 10000
+    MAX_EPISODE = 50000
 
     # environment와 agent 초기화
     cop = CoProblem()
     agent = QLearningAgent()
-    
+
     for episode in range(MAX_EPISODE) :
         # episode가 시작할 때마다 environment 초기화
         cop.setInit()
@@ -130,3 +136,4 @@ if __name__ == "__main__" :
                 agent.learnFinal(state, action, reward)
 
         print(episode, "episode's totoal state :",  cop.currentState, "total rewards :", agent.q_table[cop.currentState])
+    print(agent.q_table)

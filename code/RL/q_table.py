@@ -19,6 +19,7 @@ class QLearningAgent:
     # 상태 변환 확률은 1이므로 생략
     def __init__(self) :
         self.actions = [0, 1]
+        self.learningLate = 0.01
         self.discountFactor = 0.9
         self.epsilon = 0.1
         self.q_table = {"1": 0, "0": 0,
@@ -40,11 +41,19 @@ class QLearningAgent:
                         '111000': 0, "111001": 0, "111010": 0, "111011": 0, "111100": 0, '111101': 0, '111110': 0, '111111': 0
                         }
 
+    # 최적경로를 찾기까지 epsilon을 1로 설정. 탐색력 최대화
+    def warmup(self):
+        wc = max(self.q_table.values())
+        if wc != 9999 :
+            self.epsilon = 1
+        else :
+            self.epsilon = 0.1
+
     # s, a, r, s`를 이용해서 q-table 업데이트
     def learn(self, state, action, reward, nextState) :
         q_1 = self.q_table[state+str(action)]
-        q_2 = reward + self.discountFactor * self.q_table[nextState+self.get_actionOfState(nextState)]
-        self.q_table[state+str(action)] += 0.01 * (q_2 - q_1)
+        q_2 = reward + self.discountFactor * self.q_table[nextState+self.argMax(nextState)]
+        self.q_table[state+str(action)] += self.learningLate * (q_2 - q_1)
 
     # 마지막 state(6번째 갈림 길)일 때의 q-table 업데이트
     def learnFinal(self, state, action, reward):
@@ -57,11 +66,11 @@ class QLearningAgent:
             action = np.random.choice(self.actions)
             # print("i'm greedy!")
         else :
-            action = self.get_actionOfState(state)
+            action = self.argMax(state)
         return str(action)
 
     # 최적의 action 반환
-    def get_actionOfState(self, state):
+    def argMax(self, state):
         zeroValues = self.q_table[str(state)+'0']
         oneValues = self.q_table[str(state)+'1']
         if zeroValues > oneValues:
@@ -87,6 +96,7 @@ class CoProblem :
         self.currentState += str(action)
         return self.currentState
 
+    # 다음 state로 이동
     def toNextState(self, aciton):
         self.currentState += str(action)
 
@@ -108,15 +118,21 @@ class CoProblem :
 
 if __name__ == "__main__" :
     # Max Episode 설정
-    MAX_EPISODE = 50000
+    MAX_EPISODE = 5000
 
     # environment와 agent 초기화
     cop = CoProblem()
     agent = QLearningAgent()
 
+    agent.warmup()
     for episode in range(MAX_EPISODE) :
         # episode가 시작할 때마다 environment 초기화
         cop.setInit()
+
+        # 웜업을 통한 초기탐색
+        if episode % 100 == 0:
+            agent.warmup()
+
         for stage in range(1,7):
             # state 관측
             state = cop.getCurrentState()
@@ -136,4 +152,3 @@ if __name__ == "__main__" :
                 agent.learnFinal(state, action, reward)
 
         print(episode, "episode's totoal state :",  cop.currentState, "total rewards :", agent.q_table[cop.currentState])
-    print(agent.q_table)

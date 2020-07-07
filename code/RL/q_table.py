@@ -124,12 +124,13 @@ if __name__ == "__main__" :
     cop = CoProblem()
     agent = QLearningAgent()
 
+    # 웜업을 통한 초기탐색
     agent.warmup()
     for episode in range(MAX_EPISODE) :
         # episode가 시작할 때마다 environment 초기화
         cop.setInit()
 
-        # 웜업을 통한 초기탐색
+        # 100 epi마다 q-table을 검사해서 warmup을 종료할지 결정
         if episode % 100 == 0:
             agent.warmup()
 

@@ -31,3 +31,20 @@
 - <b>Deep Q-Networks</b>
   - [CartPole]()
   - [Flow shop Scheduling]()
+
+## Test Function Simulator for Optimization
+- [Simulator Module 1]()
+  - <b>Booth function</b>
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Booth%20function.jpg">
+  - <b>Matyas function</b>
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Matyas%20function.jpg">
+  - <b>Ackley function</b>
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/ackley%20function.jpg">
+  - <b>Le'vi function N.13</b>
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/levi13%20function.jpg">
+  - <b>Himmelblau's function</b>
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/himmerlblau's%20function.jpg">
+  - <b>Beale function</b>
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Beale%20function.jpg">
+  - <b>Goldstein-Price function</b>
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Goldstein-Price%20function.jpg">

@@ -33,14 +33,14 @@
   - [Flow shop Scheduling]()
 
 ## Test Function Simulator for Optimization
-- [Simulator Module 2]()
+- Simulator Module 1
   - <b>Sphere function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Sphere%20function.jpg">
   - <b>Rosenbrock function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Rosenbrock%20function.jpg">
   - <b>Rastrigin function function</b>
-    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Ratrigin%20function.jpg">
-- [Simulator Module 2]()
+    > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Rastrigin%20function.jpg">
+- [Simulator Module 2](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/simul/mySimul2.py)
   - <b>Booth function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Booth%20function.jpg">
   - <b>Matyas function</b>

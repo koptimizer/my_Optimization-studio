@@ -38,7 +38,7 @@
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Sphere%20function.jpg">
   - <b>Rosenbrock function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Rosenbrock%20function.jpg">
-  - <b>Ratrigin function function</b>
+  - <b>Rastrigin function function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Ratrigin%20function.jpg">
 - [Simulator Module 2]()
   - <b>Booth function</b>

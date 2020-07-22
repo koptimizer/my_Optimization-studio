@@ -15,7 +15,8 @@
 - <b>Mimitic Genetic Algorithm</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/mGA_2opt_numpyGA_2.py)<br/>
 - <b>Particle Swarm Optimization</b>
-  - [My Test function Simulator module 2]()
+  - [Matyas function](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
+  - [Himmelblau's function](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
 - <b>Cuckoo search</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>
 - <b>Improved Cuckoo search</b>

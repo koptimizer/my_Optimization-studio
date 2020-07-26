@@ -10,7 +10,7 @@
 ## Metaheuristics
 - <b>Genetic Algorithm</b>
   - [Find the largest number](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_largestNumberFinder.py)<br/>
-  - [Continuous Problem]()
+  - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnCon.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_TSP.py)<br/>
   - [IB Park's Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_Park.py)
 - <b>Mimitic Genetic Algorithm</b>
@@ -18,7 +18,7 @@
 - <b>Particle Swarm Optimization</b>
   - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
 - <b>Cuckoo search</b>
-  - [Continuous Problem]()
+  - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>
 - <b>Improved Cuckoo search</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/ICS.py)<br/>

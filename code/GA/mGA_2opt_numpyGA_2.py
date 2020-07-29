@@ -75,8 +75,11 @@ def make_distDataframe(str):
 # 거리표를 이용한 적합도 매칭 함수
 def cal_fit(stri) :
     fit = 0
-    for steps in range(len(stri)-1) :
-        fit += dist_ar[stri[steps], stri[steps+1]]
+    for i in range(len(stri)-1) :
+        if i == len(stri)-1 :
+            fit += dist_ar[stri[i], stri[0]]
+        else :
+            fit += dist_ar[stri[i], stri[i+1]]
     return fit
 
 # 2opt-algorithm

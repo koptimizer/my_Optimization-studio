@@ -77,7 +77,10 @@ def make_distDataframe(str):
 def cal_fit(stri) :
     fit = 0
     for i in range(len(stri)-1) :
-        fit += dist_ar[stri[i], stri[i+1]]
+        if i == len(stri)-1 :
+            fit += dist_ar[stri[i], stri[0]]
+        else :
+            fit += dist_ar[stri[i], stri[i+1]]
     return fit
 
 # 0 ~ ranges-1의 범위 중 두 개를 랜덤으로 샘플링해서 list 리턴

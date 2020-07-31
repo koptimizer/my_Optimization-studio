@@ -7,21 +7,17 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 class GA():
-    def __init__(self, selectionPressure, mutationProbability, chromosomeCount, SelectionProbability, ranges, convergence, problem):
-        self.selPs = selectionPressure
-        self.mutPa = mutationProbability
-        self.chrCount = chromosomeCount
-        self.selPa = SelectionProbability
-        self.ranges = [ranges*-1, ranges]
+    def __init__(self, selectionPressure, mutationProbability, chromosomeCount, selectionProbability, problem):
+        self.selPs = selectionPressure # selection pressure
+        self.mutPa = mutationProbability # Probabilty of mutation
+        self.chrCount = chromosomeCount # size of choromosome
+        self.selPa = selectionProbability # selection probabilty
         self.choromosome = [] # choromosome set
         self.fitness = [] # fitness set
         self.population = [[],[]] # [choromosome, fitness] set
         self.generation = 0 # current generation
-        self.convergence = convergence  # Convergence rate [0~1]
-        self.finder = 0  # first global optimal
-        self.finderBools = False
-        self.problem = problem
-        self.dist_ar = []
+        self.problem = problem # problem route
+        self.dist_ar = [] # [dots_list, dots_list ]distance array
         self.cities_count = 0
         self.dots_list = []
         self.limit_time = 0
@@ -64,6 +60,8 @@ class GA():
         return randomList
 
     def evolution(self) :
+        self.start = timeit.default_timer()
+        self.stop = timeit.default_timer()
         # init choromosomes
         self.make_distDataframe(self.problem)
 
@@ -77,7 +75,7 @@ class GA():
         self.population = self.population[np.argsort(self.population[:, 1])]
         print('초기화 최적 해 : \n', self.population[0, 0], "\n", self.population[0, 1])
 
-        while 1:
+        while self.stop - self.start <= self.limit_time:
             offsprings = []
             self.generation += 1
             # selection : 토너먼트선택,
@@ -130,25 +128,24 @@ class GA():
                 print(self.generation, '세대 최적 해 : \n', self.population[0, 1])
                 print(self.population[0, 0])
 
-                plotData = []
-                for index in self.population[0, 0]:
-                    plotData.append([round(float(self.dots_list[int(index)].split(" ")[0]), 3),
-                                     round(float(self.dots_list[int(index)].split(" ")[1]), 3)])
-                plotData = np.array(plotData)
-                plotData = plotData.T
-
-                textStr = "fitness :", self.population[0,1]
-
-                axs = plt.plot(plotData[0], plotData[1])
-                plt.text(0.05, 0.95, textStr, fontsize = 20, fontweight='bold')
-                plt.show()
-
-
-
+            self.stop = timeit.default_timer()
 
 if __name__ == "__main__":
-    ga = GA(0.7, 0.2, 20, 0.5, 5, 0.2, "cycle101.in")
-    start = timeit.default_timer()
+    ga = GA(selectionPressure=0.7, mutationProbability=0.2, chromosomeCount=20, selectionProbability=0.5, problem="cycle51.in")
     ga.evolution()
-    stop = timeit.default_timer()
-    print("시간 :", stop - start)
+    plotData = []
+    for index in ga.population[0, 0]:
+        plotData.append([round(float(ga.dots_list[int(index)].split(" ")[0]), 3),
+                         round(float(ga.dots_list[int(index)].split(" ")[1]), 3)])
+    plotData = np.array(plotData)
+    plotData = plotData.T
+
+    textStr = "fitness :", ga.population[0, 1]
+
+    axs = plt.plot(plotData[0], plotData[1])
+    plt.text(0.05, 0.95, textStr, fontsize=20, fontweight='bold')
+    plt.show()
+
+    print(ga.generation, '세대 최적 해 : \n', ga.population[0, 1])
+    print(ga.population[0, 0])
+    print(ga.stop - ga.start)

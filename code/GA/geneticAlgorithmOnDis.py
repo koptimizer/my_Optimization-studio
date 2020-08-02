@@ -21,6 +21,8 @@ class GA():
         self.cities_count = 0
         self.dots_list = []
         self.limit_time = 0
+        self.start = 0
+        self.stop = 0
 
     def make_distDataframe(self, problem):
         reader = open(problem, mode='rt', encoding='utf-8')

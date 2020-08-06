@@ -21,6 +21,7 @@
   - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
 - <b>Cuckoo search</b>
   - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon.py)
+  - [Continuous Problem + Visualization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon2.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>
 - <b>Improved Cuckoo search</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/ICS.py)<br/>

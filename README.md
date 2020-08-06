@@ -13,6 +13,7 @@
   - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnCon.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_TSP.py)<br/>
   - [TSP(Traveling Salesman Problem + Visualization)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnDis.py)
+  - [TSP(Traveling Salesman Problem + Visualization) 2](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnDis2.py)
   - [IB Park's Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_Park.py)
 - <b>Mimitic Genetic Algorithm</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/mGA_2opt_numpyGA_2.py)<br/>

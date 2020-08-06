@@ -1,23 +1,21 @@
 import math
-import timeit
 import numpy as np
 import random
-import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 class GA():
-    def __init__(self, selectionPressure, mutationProbability, chromosomeCount, selectionProbability, problem):
-        self.selPs = selectionPressure # selection pressure
-        self.mutPa = mutationProbability # Probabilty of mutation
-        self.chrCount = chromosomeCount # size of choromosome
-        self.selPa = selectionProbability # selection probabilty
-        self.choromosome = [] # choromosome set
-        self.fitness = [] # fitness set
-        self.population = [[],[]] # [choromosome, fitness] set
-        self.generation = 0 # current generation
-        self.problem = problem # problem route
-        self.dist_ar = [] # [dots_list, dots_list ]distance array
+    def __init__(self, threshold, mutationProbability, populationSize, selectionProbability, problem):
+        self.threshold = threshold  # selection pressure
+        self.mutPa = mutationProbability
+        self.populationSize = populationSize  # size of population
+        self.selPa = selectionProbability
+        self.chromosome = [] # chromosome set
+        self.fitness = []
+        self.population = [[],[]]  # [chromosome, fitness] set
+        self.generation = 0
+        self.problem = problem  # problem route
+        self.dist_ar = []  # [dots_list, dots_list ]distance array
         self.cities_count = 0
         self.dots_list = []
         self.limit_time = 0
@@ -34,11 +32,10 @@ class GA():
             temp = self.dots_list[i].split(" ")
             x_list.append(float(temp[0]))
             y_list.append(float(temp[1]))
-
         for n in range(self.cities_count):
             temp = []
             for m in range(self.cities_count):
-                temp.append(round((math.sqrt(((x_list[m] - x_list[n]) ** 2) + ((y_list[m] - y_list[n]) ** 2))), 2))
+                temp.append(math.sqrt((x_list[m] - x_list[n]) ** 2 + (y_list[m] - y_list[n]) ** 2))
             self.dist_ar.append(temp)
 
         self.dist_ar = np.array(self.dist_ar)
@@ -46,10 +43,10 @@ class GA():
 
     def cal_fit(self, route) :
         fit = 0
-        for i in range(len(route)-1) :
-            if i == len(route)-1 :
+        for i in range(len(route)-1):
+            if i == len(route)-1:
                 fit += self.dist_ar[route[i], route[0]]
-            else :
+            else:
                 fit += self.dist_ar[route[i], route[i+1]]
         return fit
 
@@ -59,54 +56,50 @@ class GA():
         randomList.sort()
         return randomList
 
-    def evolution(self) :
-        # init choromosomes
-        self.make_distDataframe(self.problem)
-
-        for i in range(self.chrCount):
-            self.choromosome.append(random.sample(range(0, self.cities_count), self.cities_count))
-
-        for i in range(self.chrCount):
-            self.fitness.append(round(self.cal_fit(self.choromosome[i]), 5))
-
-        self.population = (np.array([self.choromosome, self.fitness])).T
-        self.population = self.population[np.argsort(self.population[:, 1])]
-        print('초기화 최적 해 : \n', self.population[0, 0], "\n", self.population[0, 1])
-
+    def visualize(self):
         plotData = []
         for index in self.population[0, 0]:
-            plotData.append([round(float(ga.dots_list[int(index)].split(" ")[0]), 3),
-                             round(float(ga.dots_list[int(index)].split(" ")[1]), 3)])
+            plotData.append([round(float(self.dots_list[int(index)].split(" ")[0]), 3), round(float(self.dots_list[int(index)].split(" ")[1]), 3)])
         plotData = np.array(plotData)
         plotData = plotData.T
-
-        textStr = "fitness :", self.population[0, 1]
-
+        textStr = "fitness :", round(self.population[0, 1], 2)
         plt.plot(plotData[0], plotData[1])
+        plt.scatter(plotData[0], plotData[1])
         plt.text(0.05, 0.95, textStr, fontsize=20, fontweight='bold')
         plt.show()
 
-        while 1 :
+    def evolution(self) :
+        # Calculate Distance
+        self.make_distDataframe(self.problem)
+
+        # Initialize chromosomes
+        for i in range(self.populationSize):
+            self.chromosome.append(random.sample(range(0, self.cities_count), self.cities_count))
+            self.fitness.append(round(self.cal_fit(self.chromosome[i]), 5))
+        self.population = (np.array([self.chromosome, self.fitness])).T
+        self.population = self.population[np.argsort(self.population[:, 1])]
+        print('초기화 최적 해 :' + str(round(self.population[0, 1], 2)))
+
+        # Visualize
+        self.visualize()
+
+        # Main part
+        while self.generation < 10000:
             offsprings = []
             self.generation += 1
             # selection : 토너먼트선택,
-            for endSel in range(int(self.chrCount*self.selPa)):
+            for endSel in range(int(self.populationSize * self.selPa)):
                 # 난수룰 발생시켜 해집단 내 두 유전자 선택, 선택난수 발생
                 # 선택난수가 선택압보다 작으면 두 유전자 중 좋은 유전자가 선택. 아니면 반대로
                 parents_index = [0, 0]
                 for i in range(len(parents_index)):
-                    selGeneNum = self.randomTwo(self.chrCount)
-                    match = random.random()
-                    if match < self.selPs:
-                        if self.population[selGeneNum[0], 1] < self.population[selGeneNum[1], 1]:
-                            parents_index[i] = selGeneNum[0]
-                        else:
-                            parents_index[i] = selGeneNum[1]
+                    selGeneNum = self.randomTwo(self.populationSize)
+                    randNum = random.random()
+                    if randNum < self.threshold:
+                        parents_index[i] = selGeneNum[0]
                     else:
-                        if self.population[selGeneNum[0], 1] < self.population[selGeneNum[1], 1]:
-                            parents_index[i] = selGeneNum[1]
-                        else:
-                            parents_index[i] = selGeneNum[0]
+                        parents_index[i] = selGeneNum[1]
+
                 # crossover : order-based crossover
                 daddy_value = self.population[parents_index[0], 0].copy()
                 mommy_value = self.population[parents_index[1], 0].copy()
@@ -133,28 +126,14 @@ class GA():
 
             # Replacement
             self.population = self.population[np.argsort(self.population[:, 1])]
-            for i in range(int(self.chrCount*self.selPa)) :
-                self.population = np.delete(self.population, len(self.population)-1, axis=0)
-            if self.generation % 1000 == 0:
-                print(self.generation, '세대 최적 해 : \n', self.population[0, 1])
-                print(self.population[0, 0])
+            self.population = np.delete(self.population, np.s_[self.populationSize : self.populationSize+int(self.populationSize*self.selPa)], 0)
 
-                plotData = []
-                for index in self.population[0, 0]:
-                    plotData.append([round(float(ga.dots_list[int(index)].split(" ")[0]), 3),
-                                     round(float(ga.dots_list[int(index)].split(" ")[1]), 3)])
-                plotData = np.array(plotData)
-                plotData = plotData.T
 
-                textStr = "fitness :", self.population[0, 1]
-
-                plt.plot(plotData[0], plotData[1])
-                plt.text(0.05, 0.95, textStr, fontsize=20, fontweight='bold')
-                plt.show()
-
-                print(self.generation, '세대 최적 해 : \n', self.population[0, 1])
-                print(self.population[0, 0])
+            # Visualize
+            if self.generation % 100 == 0:
+                self.visualize()
+                print(self.generation, '세대 최적 해 :' + str(round(self.population[0, 1] ,2)))
 
 if __name__ == "__main__":
-    ga = GA(selectionPressure=0.7, mutationProbability=0.2, chromosomeCount=20, selectionProbability=0.5, problem="dots/cycle51.in")
+    ga = GA(threshold=0.7, mutationProbability=0.2, populationSize=50, selectionProbability=0.5, problem="dots/cycle51.in")
     ga.evolution()

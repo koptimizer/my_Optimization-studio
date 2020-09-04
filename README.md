@@ -29,7 +29,7 @@
   - [TSP(Traveling Salesman Problem + Visualization)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnDis.py)
 - <b>Recurcive Fractal Search [[about]]()</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RFS/recursiveFractalSearch.py)
-- <b>Industrial Applization</b>
+- <b>Industrial Application</b>
   - [NS SHOP+ 최적의 취급액을 가지는 방송편성표 탐색(GA)]()
 
 ## Reinforcement Learning

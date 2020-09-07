@@ -21,6 +21,7 @@
 - <b>Particle Swarm Optimization</b>
   - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
 - <b>Cuckoo search</b>
+  - [Levy Distribution](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/levy.py)
   - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon.py)
   - [Continuous Problem + Visualization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon2.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>

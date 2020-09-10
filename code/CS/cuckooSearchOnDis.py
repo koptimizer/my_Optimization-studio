@@ -92,7 +92,7 @@ class CS :
 
             # Get a cuckoo randomly by levy flight
             cuckooNest = self.population[random.randint(0, int(self.pc*self.nestCount)), 0]
-            if self.levyFlight():
+            if self.levyFlight() > 2:
                 cuckooNest = self.levyDoublebridge(cuckooNest, random.randint(0, self.cities_count - 1),
                                               random.randint(0, self.cities_count - 1)
                                               , random.randint(0, self.cities_count - 1),

@@ -32,7 +32,7 @@
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RFS/recursiveFractalSearch.py)
 - <b>Industrial Application</b>
   - [NS SHOP+ 최적의 취급액을 가지는 방송편성표 탐색(GA)]()
-  - [ESWA - An effective GA for the FJSP(GA)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/eswa3.py)<br/>
+  - [ESWA - An effective GA for the FJSP(GA)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/eswa3.py) [[논문보기]](https://github.com/koptimizer/my_PaperLog/issues/10)<br/>
 
 ## Reinforcement Learning
 - <b>Q-learning</b>

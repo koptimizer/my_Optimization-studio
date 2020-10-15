@@ -7,6 +7,9 @@
 - <img src = "https://img.shields.io/badge/Language-python-blue">
 <br/>
 
+## Simulation
+- <b>Job-shop Simulator</b>
+  - [Single machine sequence](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/SM/sms.py)<br/>
 ## Metaheuristics
 - <b>Genetic Algorithm</b>
   - [Find the largest number](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_largestNumberFinder.py)<br/>

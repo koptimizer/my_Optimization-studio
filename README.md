@@ -1,9 +1,9 @@
 # 👨‍💻 My Optimization-Studio
-- <b>Metaheuristics, Optimization Method, Reinforcement Learning</b>
+- <b>Simulation, Metaheuristics, Optimization method, Reinforcement learning</b>
 - <b>New metaheuristic algorithm</b>
   - [Recursive Fractal Search]() 
-- <b>Industrial Application of AI</b>
-- <b>Visual Simulator of Process</b>
+- <b>Industrial application of AI</b>
+- <b>Visual simulator of process</b>
 - <img src = "https://img.shields.io/badge/Language-python-blue">
 <br/>
 
@@ -13,22 +13,21 @@
 ## Metaheuristics
 - <b>Genetic Algorithm</b>
   - [Find the largest number](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_largestNumberFinder.py)<br/>
-  - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnCon.py)
+  - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnCon.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_TSP.py)<br/>
   - [TSP(Traveling Salesman Problem + Visualization)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnDis.py)
   - [TSP(Traveling Salesman Problem + Visualization) 2](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnDis2.py)
-  - [IB Park's Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_Park.py)
-  - [Scheduling Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnSch.py)
+  - [IB Park's problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/GA_Park.py)
+  - [Scheduling](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/geneticAlgorithmOnSch.py)
 - <b>Mimitic Genetic Algorithm</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/mGA_2opt_numpyGA_2.py)<br/>
 - <b>Particle Swarm Optimization</b>
-  - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
-- <b>Cuckoo search</b>
-  - [Levy Distribution](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/levy.py)
-  - [Continuous Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon.py)
-  - [Continuous Problem + Visualization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon2.py)
+  - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
+- <b>Cuckoo Search</b>
+  - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon.py)
+  - [Continuous problem + Visualization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon2.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>
-- <b>Improved Cuckoo search</b>
+- <b>Improved Cuckoo Search</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/ICS.py)<br/>
   - [TSP(Traveling Salesman Problem + Visualization)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnDis.py)
 - <b>Recurcive Fractal Search [[about]]()</b>
@@ -48,15 +47,15 @@
   - [CartPole]()
   - [Flow shop Scheduling]()
 
-## Test Function Simulator for Optimization
-- Simulator Module 1
+## Test Function for Optimization
+- Tester Module 1
   - <b>Sphere function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Sphere%20function.jpg">
   - <b>Rosenbrock function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Rosenbrock%20function.jpg">
   - <b>Rastrigin function function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Rastrigin%20function.jpg">
-- [Simulator Module 2](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/simul/mySimul2.py)
+- [Tester Module 2](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/simul/mySimul2.py)
   - <b>Booth function</b>
     > <img src = "https://github.com/koptimizer/my_Optimization-studio/blob/master/pics/Booth%20function.jpg">
   - <b>Matyas function</b>

@@ -2,8 +2,6 @@ import numpy as np
 import random as rd
 import math as mt
 
-rd.seed(777)
-
 class Machine :
     # ['Set', job, operation, machine, processingTime, start]
     def __init__(self, setup, number):

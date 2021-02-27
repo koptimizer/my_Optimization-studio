@@ -33,6 +33,8 @@
   - [Flexible Job Shop Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cps2.py)
 - <b>Gray Wolf Optimizer</b>
   - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GWO/gwo.py)
+- <b>Marine Predators Algorithm
+  - [Continuous problem]()
 - <b>Recurcive Fractal Search [[about]]()</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/RFS/recursiveFractalSearch.py)
 - <b>Industrial Application</b>

@@ -27,6 +27,7 @@
   - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon.py)
   - [Continuous problem + Visualization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon2.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>
+  - [Neural network weights optimization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/NN_MH_final.ipynb)
 - <b>Improved Cuckoo Search</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/ICS.py)<br/>
   - [TSP(Traveling Salesman Problem + Visualization)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnDis.py)

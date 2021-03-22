@@ -23,17 +23,19 @@
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GA/mGA_2opt_numpyGA_2.py)<br/>
 - <b>Particle Swarm Optimization</b>
   - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/PSO.py)
+  - [NN weights opimization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/PSO/NE_PSO_final.ipynb)
 - <b>Cuckoo Search</b>
   - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon.py)
   - [Continuous problem + Visualization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnCon2.py)
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/CS.py)<br/>
-  - [Neural network weights optimization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/NN_MH_final.ipynb)
+  - [NN weights opimization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/NE_CS_final.ipynb)
 - <b>Improved Cuckoo Search</b>
   - [TSP(Traveling Salesman Problem)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/ICS.py)<br/>
   - [TSP(Traveling Salesman Problem + Visualization)](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cuckooSearchOnDis.py)
   - [Flexible Job Shop Problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/CS/cps2.py)
 - <b>Gray Wolf Optimizer</b>
   - [Continuous problem](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GWO/gwo.py)
+  - [NN weights opimization](https://github.com/koptimizer/my_Optimization-studio/blob/master/code/GWO/NE_GWO_final.ipynb)
 - <b>Marine Predators Algorithm</b>
   - [Continuous problem]()
 - <b>Recurcive Fractal Search [[about]]()</b>
